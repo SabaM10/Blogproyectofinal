@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+
+from re import template
+from django.urls import path
 from Blogproyectofinal.views import *
 from django.contrib.auth.views import LogoutView
-from re import template
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +27,4 @@ urlpatterns = [
     path('About', about),
     path('Pages/', pages),
     path('Login/', login),
-    ]
+]
