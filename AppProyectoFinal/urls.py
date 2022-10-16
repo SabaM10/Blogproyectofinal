@@ -20,6 +20,7 @@ from re import template
 from django.urls import path
 from Blogproyectofinal.views import *
 from django.contrib.auth.views import LogoutView
+from AppProyectoFinal import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
