@@ -27,4 +27,8 @@ urlpatterns = [
     path('About', about),
     path('Pages/', pages),
     path('Login/', login),
+    path('create_blogs/', create_blogs),
+    path('update_blogs/<blog_id>', update_blogs),        
+    path('read_blogs/', read_blogs),
+    path('delete_blogs/<blog_id>', delete_blogs),
 ]
