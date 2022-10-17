@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+    <a class ="btn btn-primary" href="/AppProyectoFinal/create_blogs">Create</a>
+    <h1>Estas son todas las entradas de blogs:</h1>
+    <ul>
+        {% for blog in blogs %}
+                <li>{{ blog.titulo }}</li>
+                    <p>{{blog.subtitulo}}</p>
+                    <p>{{blog.cuerpo}}</p>
+                    <p>{{blog.fecha}}</p>
+                    <p>{{blog.autor}}</p>
+                    <img src="{{blog.imagen.url}}" alt="imagen">
+        {% endfor %}
+{% endblock %}
+

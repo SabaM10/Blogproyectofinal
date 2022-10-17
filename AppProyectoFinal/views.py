@@ -18,14 +18,18 @@ def login(request):
     return render(request, 'login.html')
 
 def create_blogs(request):
-    return render(request, 'create_blogs.html')
-
+    if request.method == 'POST':
+        blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'], imagen = request.POST['imagen'])
+        blog.save()
+        blogs = Blog.objects.all()
+        return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
+    return render(request, 'BlogCRUD/create_blogs.html')
 def update_blogs(request, blog_id):
     return render(request, 'update_blogs.html')
 
 def read_blogs(request = None):
     blogs = Blog.objects.all()
-    return render(request, 'read_blogs.html', {'blogs': blogs})
+    return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
 
 def delete_blogs(request, blog_id):
     return render(request, 'delete_blogs.html')
