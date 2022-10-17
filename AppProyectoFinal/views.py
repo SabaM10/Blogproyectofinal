@@ -5,8 +5,8 @@ from .models import Blog
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'home.html')
+def index(request):
+    return render(request, 'index.html')
 
 def about(request):
     return render(request, 'about.html')
@@ -23,7 +23,7 @@ def create_blogs(request):
 def update_blogs(request, blog_id):
     return render(request, 'update_blogs.html')
 
-def read_blogs(request):
+def read_blogs(request = None):
     blogs = Blog.objects.all()
     return render(request, 'read_blogs.html', {'blogs': blogs})
 

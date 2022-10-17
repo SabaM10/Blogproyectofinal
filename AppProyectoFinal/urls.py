@@ -20,12 +20,12 @@ from re import template
 from django.urls import path
 from Blogproyectofinal.views import *
 from django.contrib.auth.views import LogoutView
-from AppProyectoFinal import views
+from AppProyectoFinal.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
-    path('About', about),
+    path('', index),
+    path('About/', about),
     path('Pages/', pages),
     path('Login/', login),
     path('create_blogs/', create_blogs),
