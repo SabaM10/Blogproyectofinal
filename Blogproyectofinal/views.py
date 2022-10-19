@@ -1,17 +1,17 @@
-# from multiprocessing import AuthenticationError
-# from nturl2path import url2pathname
 # from django.shortcuts import render
+# from django.http import HttpResponse
+# from django.template import loader
 
 # from django.contrib.auth.forms import AuthenticationForm
 # #from django.contrib.auth.forms import login, logout, Authenticate
 
 # # Create your views here.
-# def home(request):
-#     return render(request, "index.html")
-# def about(request):
-#     return render(request, "about.html")
-# def pages(request):
-#     return render(request, "pages.html")
+# def index(request):
+#    return render(request, "index.html")
+# # def about(request):
+# #     return render(request, "about.html")
+# # def pages(request):
+# #     return render(request, "pages.html")
 # def login(request):
 #     return render(request, "login.html")
 

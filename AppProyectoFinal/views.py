@@ -2,8 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
 
-from AppProyectoFinal.forms import form_blog
+from AppProyectoFinal.forms import *
 from .models import Blog
+
+#para el login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import LoginView, LogoutView
 
 # Create your views here.
 
@@ -16,8 +21,41 @@ def about(request):
 def pages(request):
     return render(request, 'pages.html')
 
-def login(request):
-    return render(request, 'login.html')
+def login_request(request):
+
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return render(request, 'index.html', {"mensaje": f"Bienvenido {username}"} )
+            else:
+                return render(request, 'login.html', {"mensaje": "Usuario o contraseña incorrectos"})
+    else:
+                return render(request, 'login.html', {"mensaje": "Formulario errroneo!"})
+    form = AuthenticationForm()
+
+    return render(request, 'login.html', {"form": form})
+
+def register(request):
+
+    if request.method == 'POST':
+
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            form.save()
+            return render(request, 'index.html', {"mensaje": f"Bienvenido {username}"} )
+    else:
+        form = UserRegisterForm()
+    
+    return render(request, 'registro.html', {"form": form})
 
 def create_blogs(request):
     if request.method == 'POST':
