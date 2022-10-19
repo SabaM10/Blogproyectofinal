@@ -24,9 +24,9 @@ from django.urls import include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppProyectoFinal/', include('AppProyectoFinal.urls')),
-    path('login.html/', login.urls),
-    path('registro.html/', registro.urls),
-    path('editarPerfil.html/', editarPerfil.urls),
-    path('changepass.html/', changepass.urls),
-    path('AgregarAvatar.html/', AgregarAvatar.urls)
+    # path('/login', login),
+    # path('/registro', registro),
+    # path('/editarPerfil', editarPerfil),
+    # path('/changepass', changePass),
+    # path('/AgregarAvatar', AgregarAvatar)
     ]

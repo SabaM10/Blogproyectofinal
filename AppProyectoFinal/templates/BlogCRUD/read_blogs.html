@@ -12,7 +12,9 @@
                     <p>{{blog.cuerpo}}</p>
                     <p>{{blog.fecha}}</p>
                     <p>{{blog.autor}}</p>
-                    <img src="{{blog.imagen.url}}" alt="imagen">
+                    <!-- falta img aca-->
+                    <a class ="btn btn-primary" href="/AppProyectoFinal/update_blogs/{{blog.id}}">Update</a>
+                    <a class ="btn btn-primary" href="/AppProyectoFinal/delete_blogs/{{blog.id}}">Delete</a>
         {% endfor %}
 {% endblock %}
 

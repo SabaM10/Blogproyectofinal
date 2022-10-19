@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% load static %}
+{% block contenido %}
+<link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
+<form method="POST">{% csrf_token %}
+    <table>
+        <tr>
+            <td>titulo</td>
+            <td><input type="text" name="titulo" value="{{blog.titulo}}"></td>
+        </tr>
+        <tr>
+            <td>subtitulo</td>
+            <td><input type="text" name="subtitulo" value="{{blog.subtitulo}}"></td>
+        </tr>
+        <tr>
+            <td>cuerpo</td>
+            <td><input type="text" name="cuerpo" value="{{blog.cuerpo}}"></td>
+        </tr>
+        <tr>
+            <td>fecha</td>
+            <td><input type="date" name="fecha" value="{{blog.fecha}}"></td>
+        </tr>
+        <tr>
+            <td>autor</td>
+            <td><input type="text" name="autor" value="{{blog.autor}}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit" class="btn btn-primary btndj">Actualizar</button></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}
