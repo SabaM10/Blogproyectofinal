@@ -7,6 +7,13 @@
     box-shadow: 0 0 10px #ccc;
     margin-top: 100px;
 }
+.test{
+    background-color: #030354;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
 .contenidoEstudiantes{
     background-color: #030354;
@@ -29,7 +36,6 @@
 .btndj{
     border-radius: 20px !important;
 }
-
 
 
 /*soy un comentario*/

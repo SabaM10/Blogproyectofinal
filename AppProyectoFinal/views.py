@@ -15,16 +15,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
-def index(request):
-    return render(request, 'index.html')
-@login_required
-def about(request):
-    return render(request, 'about.html')
-@login_required
-def pages(request):
-    return render(request, 'pages.html')
-
 def login_request(request):
 
     if request.method == 'POST':
@@ -60,6 +50,17 @@ def register(request):
         form = UserRegisterForm()
     
     return render(request, 'registro.html', {"form": form})
+
+
+@login_required
+def index(request):
+    return render(request, 'index.html')
+@login_required
+def about(request):
+    return render(request, 'about.html')
+@login_required
+def pages(request):
+    return render(request, 'pages.html')
 
 @login_required
 def editarPerfil(request):
@@ -98,12 +99,14 @@ def update_blogs(request, blog_id):
             blog.subtitulo = request.POST['subtitulo']
             blog.cuerpo = request.POST['cuerpo']
             blog.autor = request.POST['autor']
-            blog.fecha = request.POST['fecha']
+            #blog.fecha = request.POST['fecha']
             #blog.imagen = request.POST['imagen']
             blog.save()
             read_blogs()
             blogs = Blog.objects.all()
             return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
+    else:
+        formulario = form_blog(initial = {'titulo': blog.titulo, 'subtitulo': blog.subtitulo, 'cuerpo': blog.cuerpo, 'autor': blog.autor, 'fecha': blog.fecha, 'imagen': blog.imagen})
     return render(request, 'BlogCRUD/update_blogs.html', {'blog': blog})
 
 def read_blogs(request = None):

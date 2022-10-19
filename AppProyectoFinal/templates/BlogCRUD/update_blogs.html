@@ -18,15 +18,19 @@
             <td><input type="text" name="cuerpo" value="{{blog.cuerpo}}"></td>
         </tr>
         <tr>
-            <td>fecha</td>
-            <td><input type="date" name="fecha" value="{{blog.fecha}}"></td>
-        </tr>
-        <tr>
             <td>autor</td>
             <td><input type="text" name="autor" value="{{blog.autor}}"></td>
         </tr>
         <tr>
-            <td><button type="submit" class="btn btn-primary btndj">Actualizar</button></td>
+            <td>fecha</td>
+            
+            <td><p>{{blog.fecha}}</p><input type="date" name="fecha" value="{{blog.fecha}}"></td>
+        </tr>
+        <tr>
+            <td>imagen</td>
+            <td><input type="file" name="imagen" value="{{blog.imagen}}"></td>
+        <tr>
+            <td><input type="submit" class="btn btn-primary btndj" value="Actualizar"></td>
         </tr>
     </table>
 </form>
