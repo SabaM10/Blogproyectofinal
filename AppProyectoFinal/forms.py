@@ -8,7 +8,8 @@ class form_blog(forms.Form):
     cuerpo = forms.CharField(max_length = 1000)
     autor = forms.CharField(max_length=30)
     fecha = forms.DateField()
-    #imagen = forms.ImageField(upload_to='../images')
+    imagen = forms.ImageField()
+
 class UserRegisterForm(UserCreationForm):
     email = forms.EmailField()
     password1: forms.CharField(label='Contraseña', widget=forms.PasswordInput)

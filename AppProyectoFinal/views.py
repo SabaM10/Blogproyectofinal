@@ -60,15 +60,15 @@ def register(request):
         form = UserRegisterForm()
     
     return render(request, 'registro.html', {"form": form})
-@login_required
+
 def create_blogs(request):
     if request.method == 'POST':
-        blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'])#, imagen = request.POST['imagen']
+        blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'], imagen = request.POST['imagen'])
         blog.save()
         blogs = Blog.objects.all()
         return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/create_blogs.html')
-@login_required
+
 def update_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
 
@@ -87,11 +87,11 @@ def update_blogs(request, blog_id):
             blogs = Blog.objects.all()
             return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/update_blogs.html', {'blog': blog})
-@login_required
+
 def read_blogs(request = None):
     blogs = Blog.objects.all()
     return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
-@login_required
+
 def delete_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     blog.delete()

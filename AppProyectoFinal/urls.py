@@ -15,13 +15,12 @@ Including another URLconf
 """
 from atexit import register
 from django import views
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
-
-from re import template
 from django.urls import path
 from Blogproyectofinal.views import *
 from django.contrib.auth.views import LogoutView
+
 from AppProyectoFinal.views import *
 
 urlpatterns = [
