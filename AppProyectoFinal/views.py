@@ -9,15 +9,19 @@ from .models import Blog
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+#decorador para que solo se pueda acceder a la pagina si estas logeado
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required
 def index(request):
     return render(request, 'index.html')
-
+@login_required
 def about(request):
     return render(request, 'about.html')
-
+@login_required
 def pages(request):
     return render(request, 'pages.html')
 
@@ -56,7 +60,7 @@ def register(request):
         form = UserRegisterForm()
     
     return render(request, 'registro.html', {"form": form})
-
+@login_required
 def create_blogs(request):
     if request.method == 'POST':
         blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'])#, imagen = request.POST['imagen']
@@ -64,7 +68,7 @@ def create_blogs(request):
         blogs = Blog.objects.all()
         return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/create_blogs.html')
-
+@login_required
 def update_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
 
@@ -83,11 +87,11 @@ def update_blogs(request, blog_id):
             blogs = Blog.objects.all()
             return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/update_blogs.html', {'blog': blog})
-
+@login_required
 def read_blogs(request = None):
     blogs = Blog.objects.all()
     return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
-
+@login_required
 def delete_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     blog.delete()
