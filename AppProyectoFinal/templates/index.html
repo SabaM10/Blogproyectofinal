@@ -26,12 +26,18 @@
                     </li> <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/read_blogs">Pages</a>
                     </li>
+                    {% if not request.user.is_authenticated %}
                     </li> <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/Login">Login</a>
                     </li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+
                 </li> <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/Logout">Cerrar Sesion</a>
+                    <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/EditarPerfil">Editar Perfil</a>
                 </li>
+                    {% endif %}
                     </li>
                 </ul>
             </div>

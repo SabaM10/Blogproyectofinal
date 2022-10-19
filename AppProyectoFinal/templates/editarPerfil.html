@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<H1>Formulario - Editar Perfil</H1>
+<h1>de {{user.username}}</h1>
+<form action = "" method="POST">
+    {% csrf_token %}
+    <table>
+        {{miFormulario.as_table}}
+    </table>
+
+    <input type="submit" value="Guardar">
+</form>
+{% endblock %}

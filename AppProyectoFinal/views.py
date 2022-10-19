@@ -61,6 +61,24 @@ def register(request):
     
     return render(request, 'registro.html', {"form": form})
 
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+
+    if request.method == 'POST':
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+            informacion = miFormulario.cleaned_data
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password1']
+            usuario.save()
+            return render(request, 'index.html', {"mensaje": f"Perfil editado correctamente"})
+    else:
+        miFormulario = UserEditForm(initial = {'email': usuario.email})
+
+    return render(request, 'editarPerfil.html', {'miFormulario': miFormulario, 'usuario': usuario})
 def create_blogs(request):
     if request.method == 'POST':
         blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'], imagen = request.POST['imagen'])

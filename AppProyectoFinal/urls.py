@@ -31,6 +31,7 @@ urlpatterns = [
     path('Login/',login_request),
     path('Registro/',register),
     path('Logout/',LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path("EditarPerfil/", editarPerfil),
     path('create_blogs/', create_blogs),
     path('update_blogs/<blog_id>', update_blogs),        
     path('read_blogs/', read_blogs),
