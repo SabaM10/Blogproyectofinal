@@ -26,11 +26,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppProyectoFinal/', include('AppProyectoFinal.urls')),
-    # path('/login', login),
-    # path('/registro', registro),
-    # path('/editarPerfil', editarPerfil),
-    # path('/changepass', changePass),
-    # path('/AgregarAvatar', AgregarAvatar)
     ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

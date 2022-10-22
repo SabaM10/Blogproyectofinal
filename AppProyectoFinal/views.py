@@ -10,6 +10,8 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
+#import datetime
+from datetime import datetime
 
 #decorador para que solo se pueda acceder a la pagina si estas logeado
 from django.contrib.auth.decorators import login_required
@@ -80,13 +82,20 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial = {'email': usuario.email})
 
     return render(request, 'editarPerfil.html', {'miFormulario': miFormulario, 'usuario': usuario})
+
 def create_blogs(request):
+
     if request.method == 'POST':
+        blog = form_blog(request.POST, request.FILES)
         blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'], imagen = request.POST['imagen'])
         blog.save()
         blogs = Blog.objects.all()
         return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/create_blogs.html')
+
+def read_blogs(request = None):
+    blogs = Blog.objects.all()
+    return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
 
 def update_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
@@ -99,8 +108,11 @@ def update_blogs(request, blog_id):
             blog.subtitulo = request.POST['subtitulo']
             blog.cuerpo = request.POST['cuerpo']
             blog.autor = request.POST['autor']
-            #blog.fecha = request.POST['fecha']
-            #blog.imagen = request.POST['imagen']
+            #get a date from a form and convert it to a datetime object
+            blog.fecha = datetime.strptime(request.POST['fecha'], '%Y-%m-%d')
+            #get a image from a form and convert it to a image object
+            blog.imagen = request.FILES['imagen']
+           # blog.imagen = request.POST['imagen']
             blog.save()
             read_blogs()
             blogs = Blog.objects.all()
@@ -108,10 +120,6 @@ def update_blogs(request, blog_id):
     else:
         formulario = form_blog(initial = {'titulo': blog.titulo, 'subtitulo': blog.subtitulo, 'cuerpo': blog.cuerpo, 'autor': blog.autor, 'fecha': blog.fecha, 'imagen': blog.imagen})
     return render(request, 'BlogCRUD/update_blogs.html', {'blog': blog})
-
-def read_blogs(request = None):
-    blogs = Blog.objects.all()
-    return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
 
 def delete_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
