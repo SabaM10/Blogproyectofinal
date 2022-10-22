@@ -102,7 +102,7 @@ def create_blogs(request):
             blogs = Blog.objects.all()
         return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/create_blogs.html')
-
+@login_required
 def read_blogs(request = None):
     blogs = Blog.objects.all()
     return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
@@ -111,7 +111,7 @@ def update_blogs(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
 
     if request.method == 'POST':
-        formulario = form_blog(request.POST)
+        formulario = form_blog(request.POST, request.FILES)
 
         if formulario.is_valid():
             blog.titulo = request.POST['titulo']
@@ -122,7 +122,6 @@ def update_blogs(request, blog_id):
             blog.fecha = datetime.strptime(request.POST['fecha'], '%Y-%m-%d')
             #get a image from a form and convert it to a image object
             blog.imagen = request.FILES['imagen']
-           # blog.imagen = request.POST['imagen']
             blog.save()
             read_blogs()
             blogs = Blog.objects.all()
@@ -136,5 +135,10 @@ def delete_blogs(request, blog_id):
     blog.delete()
     blogs = Blog.objects.all()
     return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
+
+def publicacion(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    return render(request, 'publicacion.html', {'blog': blog})
+
 
 # Path: AppProyectoFinal\urls.py

@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block contenido %}
-    <p>Hola soy Login</p>
     <form action = '' method="POST" > {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="btn btn-primary btndj">Registrarse</button>

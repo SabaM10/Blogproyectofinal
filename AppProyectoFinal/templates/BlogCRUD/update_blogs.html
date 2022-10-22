@@ -3,7 +3,7 @@
 {% load static %}
 {% block contenido %}
 <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
-<form method="POST">{% csrf_token %}
+<form action = "" method="POST" enctype="multipart/form-data">{% csrf_token %}
     <table>
         <tr>
             <td>titulo</td>
@@ -28,7 +28,7 @@
         </tr>
         <tr>
             <td>imagen</td>
-            <td><input type="file" name="imagen" value="{{blog.imagen}}"></td>
+            <td><img src="{{blog.imagen.url}}" alt="imagen" width="200" height="200"> <input type="file" name="imagen" value="{{blog.imagen.url}}"></td>
         <tr>
             <td><input type="submit" class="btn btn-primary btndj" value="Actualizar"></td>
         </tr>

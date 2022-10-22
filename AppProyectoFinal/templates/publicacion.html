@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% load static %}
+{% block contenido %}
+<h1>{{blog.titulo}}</h1>
+<div class="row">
+    <div class="col-md-6">
+        <img src="{{blog.imagen.url}}" alt="imagen" width="500" height="500">
+    </div>
+    <div class="col-md-6">
+        <p>{{blog.subtitulo}}</p>
+        <p>{{blog.cuerpo}}</p>
+        <p>{{blog.autor}}</p>
+        <p>{{blog.fecha}}</p>
+    </div>
+{% endblock %}

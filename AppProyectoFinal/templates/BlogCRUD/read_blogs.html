@@ -4,18 +4,23 @@
 
 {% block contenido %}
     <a class ="btn btn-primary" href="/AppProyectoFinal/create_blogs">Create</a>
-    <h1>Estas son todas las entradas de blogs:</h1>
-    <ul>
+    <h1>Publicaciones:</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Acciones</th>
+        </tr>
         {% for blog in blogs %}
-                <li>{{ blog.titulo }}</li>
-                    <p>{{blog.subtitulo}}</p>
-                    <p>{{blog.cuerpo}}</p>
-                    <p>{{blog.fecha}}</p>
-                    <p>{{blog.autor}}</p>
-                    <img src="{{blog.imagen.url}}" alt="imagen" width="200" height="200">
-                    <!-- falta img aca-->
-                    <a class ="btn btn-primary" href="/AppProyectoFinal/update_blogs/{{blog.id}}">Update</a>
-                    <a class ="btn btn-primary" href="/AppProyectoFinal/delete_blogs/{{blog.id}}">Delete</a>
+        <tr>
+            <td>{{blog.titulo}}</td>
+            <td>{{blog.autor}}</td>
+            <td>
+                <a class ="btn btn-primary" href="/AppProyectoFinal/publicacion/{{blog.id}}">Leer Mas</a>
+                <a class ="btn btn-primary" href="/AppProyectoFinal/update_blogs/{{blog.id}}">Update</a>
+                <a class ="btn btn-primary" href="/AppProyectoFinal/delete_blogs/{{blog.id}}">Delete</a>
+            </td>
+        </tr>
         {% endfor %}
 {% endblock %}
 

@@ -38,6 +38,7 @@ urlpatterns = [
     path('update_blogs/<blog_id>', update_blogs),        
     path('read_blogs/', read_blogs),
     path('delete_blogs/<blog_id>', delete_blogs),
+    path('publicacion/<blog_id>', publicacion),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
