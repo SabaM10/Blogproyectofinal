@@ -1,3 +1,4 @@
+from tokenize import Floatnumber
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
@@ -84,12 +85,21 @@ def editarPerfil(request):
     return render(request, 'editarPerfil.html', {'miFormulario': miFormulario, 'usuario': usuario})
 
 def create_blogs(request):
-
+    blog = Blog()
     if request.method == 'POST':
-        blog = form_blog(request.POST, request.FILES)
-        blog = Blog(titulo=request.POST['titulo'], subtitulo = request.POST['subtitulo'],  cuerpo=request.POST['cuerpo'], autor=request.POST['autor'], fecha=request.POST['fecha'], imagen = request.POST['imagen'])
-        blog.save()
-        blogs = Blog.objects.all()
+        
+        formulario = form_blog(request.POST, request.FILES)
+        if formulario.is_valid():
+            blog.titulo = request.POST['titulo']
+            blog.subtitulo = request.POST['subtitulo']
+            blog.cuerpo = request.POST['cuerpo']
+            blog.autor = request.POST['autor']
+            #get a date from a form and convert it to a datetime object
+            blog.fecha = datetime.strptime(request.POST['fecha'], '%Y-%m-%d')
+            #get a image from a form and convert it to a image object
+            blog.imagen = request.FILES['imagen']
+            blog.save()
+            blogs = Blog.objects.all()
         return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     return render(request, 'BlogCRUD/create_blogs.html')
 

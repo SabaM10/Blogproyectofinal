@@ -3,8 +3,7 @@
 {% load static %}
 
 {% block contenido %}
-<form action="/AppProyectoFinal/create_blogs/" method="POST">
-    {% csrf_token %}
+<form action="/AppProyectoFinal/create_blogs/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
     <input type="text" name="titulo" placeholder="Title">
     <input type="text" name="subtitulo" placeholder="Subtitle">
     <input type="text" name="cuerpo" placeholder="Body">
