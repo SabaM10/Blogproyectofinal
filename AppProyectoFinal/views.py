@@ -16,7 +16,7 @@ from datetime import datetime
 
 #decorador para que solo se pueda acceder a la pagina si estas logeado
 from django.contrib.auth.decorators import login_required
-
+#decorador para que solo los administradores puedan editar/borrar
 # Create your views here.
 def login_request(request):
 
@@ -83,7 +83,6 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial = {'email': usuario.email})
 
     return render(request, 'editarPerfil.html', {'miFormulario': miFormulario, 'usuario': usuario})
-
 def create_blogs(request):
     blog = Blog()
     if request.method == 'POST':

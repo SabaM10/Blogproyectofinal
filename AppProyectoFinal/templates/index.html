@@ -28,30 +28,35 @@
                     </li>
                     {% if not request.user.is_authenticated %}
                     </li> <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/Login">Login</a>
+                        <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/accounts/login">Login</a>
                     </li>
                     {% endif %}
                     {% if request.user.is_authenticated %}
 
                 </li> <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/Logout">Cerrar Sesion</a>
+                    <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/accounts/Logout">Cerrar Sesion</a>
                 </li>
                 <li> <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/EditarPerfil">Editar Perfil</a>
-                </li>
-                <li>
-                    <p class="test">Bienvenido! {{user.username}}</p>
+                    <a class="nav-link active" aria-current="page" href="/AppProyectoFinal/accounts/EditarPerfil">Editar Perfil</a>
                 </li>
                     {% endif %}
-                    </li>
+                </li>
                 </ul>
+                <ul class="sidebar-nav">
+                   {% if user.is_authenticated %}
+                     <li style="color: #fff;">User: {{ user.get_username }}</li>
+                     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+                   {% else %}
+                     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+                   {% endif %}
+                  </ul>
             </div>
         </div>
     </nav>
     <div class="contenido1">
      
         {% block contenido %}
-        <h1>Proyecto final Coderhouse</h1>
+        <h1>Proyecto final</h1>
         <h2>Blog</h2>
       <h1>Integrantes</h1>
         <h2>Miro Saba</h2>

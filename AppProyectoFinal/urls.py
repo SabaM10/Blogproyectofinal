@@ -24,21 +24,23 @@ from django.contrib.auth.views import LogoutView
 from AppProyectoFinal.views import *
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index),
     path('About/', about),
     path('Pages/', pages),
-    path('Login/',login_request),
-    path('Registro/',register),
-    path('Logout/',LogoutView.as_view(template_name='logout.html'), name='logout'),
-    path("EditarPerfil/", editarPerfil),
+    path('accounts/login/',login_request),
+    path('accounts/Registro/',register),
+    path('accounts/Logout/',LogoutView.as_view(template_name='logout.html'), name='logout'),
+    path("accounts/EditarPerfil/", editarPerfil),
     path('create_blogs/', create_blogs),
     path('update_blogs/<blog_id>', update_blogs),        
     path('read_blogs/', read_blogs),
     path('delete_blogs/<blog_id>', delete_blogs),
     path('publicacion/<blog_id>', publicacion),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

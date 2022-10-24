@@ -10,14 +10,13 @@
 .test{
     background-color: #030354;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: left;
+    align-items: left;
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
     border: 1px solid #ccc;
-    box-shadow: 0 0 10px #ccc;
-    margin-top: 100px;
+    box-shadow: 0 0 1px #ccc;
     font: 20px Arial, sans-serif;
     color: #fff;
 }

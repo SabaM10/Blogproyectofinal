@@ -1,5 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from django.db import models
+from django.contrib.auth.decorators import permission_required
+
 
 # Create your models here.
 class Blog(models.Model):
