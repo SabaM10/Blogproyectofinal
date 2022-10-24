@@ -17,8 +17,7 @@ from xml.etree.ElementInclude import include
 from django.contrib import admin
 from django.urls import path
 from Blogproyectofinal.views import *
-from django.contrib.auth.views import LogoutView
-from re import template
+from AppProyectoFinal.views import *
 from django.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -26,6 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('AppProyectoFinal/', include('AppProyectoFinal.urls')),
+    path('', index),
     ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
