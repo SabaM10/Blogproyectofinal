@@ -3,14 +3,45 @@
 {% load static %}
 
 {% block contenido %}
-<form action="/AppProyectoFinal/create_blogs/" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-    <input type="text" name="titulo" placeholder="Title">
-    <input type="text" name="subtitulo" placeholder="Subtitle">
-    <input type="text" name="cuerpo" placeholder="Body">
-    <input type="text" name="autor" placeholder="Author" value="{{user.username}}" readonly>
-    <input type="date" name="fecha" placeholder="fecha">
-    #upload image to the server
-    <input type="file" name="imagen" placeholder="imagen">
-    <input type="submit" value="Create">
+<form class ="form-control" action="/AppProyectoFinal/create_blogs/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <div class="form-group row">
+        <label for="titulo" class="col-sm-2 col-form-label">Titulo</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="titulo" placeholder="Titulo">
+        </div>
+      </div>
+    <div class="form-group row">
+        <label for="subtitulo" class="col-sm-2 col-form-label">Subtitulo</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" name="subtitulo" placeholder="subtitulo">
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="contenido" class="col-sm-2 col-form-label">Contenido</label>
+        <div class="col-sm-10">
+        <textarea class="form-control" name="cuerpo" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+        <label for="autor" class="col-sm-2 col-form-label">Autor</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control-plaintext" name="autor" placeholder="Autor" value="{{user.username}}" readonly>
+      </div>        
+    </div>
+    <div class="form-group row">
+        <label for="imagen" class="col-sm-2 col-form-label">Fecha</label>
+        <div class="col-sm-10">
+        <input type="date" class="form-control-date" name="fecha">
+      </div>
+    <div class="form-group row">
+        <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
+        <div class="col-sm-10">
+        <input type="file" class="form-control-file" name="imagen">
+      </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary">Publicar</button>
+      </div>
 </form>
 {% endblock %}
