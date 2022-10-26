@@ -122,7 +122,6 @@ def update_blogs(request, blog_id):
             #get a image from a form and convert it to a image object
             blog.imagen = request.FILES['imagen']
             blog.save()
-            read_blogs()
             blogs = Blog.objects.all()
             return render(request, 'BlogCRUD/read_blogs.html', {'blogs': blogs})
     else:
