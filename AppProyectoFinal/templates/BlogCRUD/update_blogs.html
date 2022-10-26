@@ -3,52 +3,23 @@
 {% load static %}
 {% block contenido %}
 <link rel="stylesheet" href="{%static 'css/bootstrap.min.css'%}">
-<form action = "" method="POST" enctype="multipart/form-data">{% csrf_token %}
-    <!-- <table>
-        <tr>
-            <td>titulo</td>
-            <td><input type="text" name="titulo" value="{{blog.titulo}}"></td>
-        </tr>
-        <tr>
-            <td>subtitulo</td>
-            <td><input type="text" name="subtitulo" value="{{blog.subtitulo}}"></td>
-        </tr>
-        <tr>
-            <td>cuerpo</td>
-            <td><input type="text" name="cuerpo" value="{{blog.cuerpo}}"></td>
-        </tr>
-        <tr>
-            <td>autor</td>
-            <td><input type="text" name="autor" value="{{blog.autor}}"></td>
-        </tr>
-        <tr>
-            <td>fecha</td>
-            
-            <td><p>{{blog.fecha}}</p><input type="date" name="fecha" value="{{blog.fecha}}"></td>
-        </tr>
-        <tr>
-            <td>imagen</td>
-            <td><img src="{{blog.imagen.url}}" alt="imagen" width="200" height="200"> <input type="file" name="imagen" value="{{blog.imagen.url}}"></td>
-        <tr>
-            <td><input type="submit" class="btn btn-primary btndj" value="Actualizar"></td>
-        </tr>
-    </table> -->
+<form class="form-control needs-validation"action = "" method="POST" enctype="multipart/form-data">{% csrf_token %}
     <div class="form-group row">
         <label for="titulo" class="col-sm-2 col-form-label">Titulo</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="{{blog.titulo}}">
+          <input type="text" class="form-control" name="titulo" placeholder="Titulo" value="{{blog.titulo}}" required>
         </div>
       </div>
     <div class="form-group row">
         <label for="subtitulo" class="col-sm-2 col-form-label">Subtitulo</label>
         <div class="col-sm-10">
-        <input type="text" class="form-control" name="subtitulo" placeholder="subtitulo" value="{{blog.subtitulo}}">
+        <input type="text" class="form-control" name="subtitulo" placeholder="subtitulo" value="{{blog.subtitulo}}" required>
       </div>
     </div>
     <div class="form-group row">
         <label for="contenido" class="col-sm-2 col-form-label">Contenido</label>
         <div class="col-sm-10">
-        <textarea class="form-control" name="cuerpo" rows="3">{{blog.cuerpo}}</textarea>
+        <textarea class="form-control" name="cuerpo" rows="3"required>{{blog.cuerpo}}</textarea>
       </div>
     </div>
     <div class="form-group row">
@@ -60,13 +31,13 @@
     <div class="form-group row">
         <label for="fecha" class="col-sm-2 col-form-label">Fecha</label>
         <div class="col-sm-10">
-        <input type="date" class="form-control-date" name="fecha" value="{{blog.fecha}}">
+        <input type="date" class="form-control-date" name="fecha" value="{{blog.fecha}}" required>
       </div>
     <div class="form-group row">
         <label for="imagen" class="col-sm-2 col-form-label">Imagen</label>
         <div class="col-sm-10">
             <img src="{{blog.imagen.url}}" alt="imagen" height="200" width="200">
-        <input type="file" class="form-control-file" name="imagen">
+        <input type="file" class="form-control-file" name="imagen" required>
       </div>
     </div>
     <div class="form-group row">
@@ -74,4 +45,24 @@
         <button type="submit" class="btn btn-primary">Publicar</button>
       </div>
 </form>
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function() {
+    'use strict';
+    window.addEventListener('load', function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName('needs-validation');
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener('submit', function(event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  })();
+  </script>
 {% endblock %}
